@@ -1,0 +1,100 @@
+# Design:
+# 1. Use BigInt for all number fields. This makes it easy to handle in ethers.js or other web3
+#    frontend libraries. This ensures long term data consistency and interoperability.
+# 2. Return values as would be returned by the contract. Do not convert them to human
+#    readable form within the subgraph. It is the frontends job to hanlde this conversion.
+
+# Rules:
+# 1. Don't break ABI. Application's will be built using this subgraph for various purposes.
+#    We do not want updates to this subgraph to trash multiple apps at once. If for some reason
+#    an ABI breaking change has to be made, all known consumers of this subgraph must be notified
+#    at least 30 days in advance.
+# 2. Additions must be peer reviewed. We must ensure all additions to this subgraph thouroughly
+#    serve their intended purpose, as not to be forced to break rule #1 later.
+# 3. No scams allowed. If you want your contract to be part of this subgraph you must submit
+#    contract for review to https://t.me/pulsepolice and pass a peer review.
+
+type Owner @entity {
+  # id
+  id: ID!
+  # flags
+  isGnosisSafe:  Boolean! # Staker.app
+  hasMintedHdrn: Boolean! # Hedron        -> 0x3819f64f282bf135d62168C1e513280dAF905e06
+  hasMintedMaxi: Boolean! # Maximus DAO   -> 0x0d86eb9f43c57f6ff3bc9e23d8f9d82503f0e84b
+  hasMintedPlsd: Boolean! # Pulsedogecoin -> 0x34f0915a5f15a66eba86f6a58be1a471fb7836a7
+  # data
+  hexStakes: [HEXStake!] @derivedFrom(field: "owner")
+  hdrnMintAmount: BigInt
+  maxiMintAmount: BigInt
+  plsdMintAmount: BigInt
+}
+
+type HEXStake @entity {
+  # id
+  id: ID!
+  owner: Owner!
+  previousOwners: [Owner!]
+  stakeId: BigInt!
+  # flags
+  isActive: Boolean!
+  isBtcFreeClaim: Boolean!
+  isGoodAccounted: Boolean!
+  isHdrnHsi: Boolean!
+  isHdrnHsiTokenized: Boolean!
+  # hex data
+  stakeAmount: BigInt!
+  stakeShares: BigInt!
+  stakedDays: BigInt!
+  stakeStartDay: BigInt!
+  stakeEndDayScheduled: BigInt!
+  stakeEndDayActual: BigInt
+  stakePayout: BigInt
+  stakePenalty: BigInt
+  # hdrn data
+  hdrnLaunchBonus: BigInt!
+  hdrnMintedDays: BigInt!
+  hdrnHsiAddress: Bytes
+  hdrnHsiTokenId: BigInt
+  hdrnLoan: HDRNLoan
+}
+
+type HDRNLoan @entity {
+  # id
+  id: ID!
+  hexStake: HEXStake!
+  borrower: Owner
+  previousBorrowers: [Owner!]
+  previousLoanAmounts: [BigInt!]
+  previousPaymentsMade: [BigInt!]
+  previousLoanEndEvent: [String!]
+  # flags
+  isActive: Boolean!
+  # data
+  loanStartDay: BigInt!
+  loanAmount: BigInt!
+  loanedDays: BigInt!
+  interestRate: BigInt!
+  paymentsMade: BigInt!
+  paymentDueDay: BigInt!
+  liquidationDay: BigInt!
+  liquidations: [HDRNLiquidation!] @derivedFrom(field: "loan")
+}
+
+type HDRNLiquidation @entity {
+  # id
+  id: ID!
+  loan: HDRNLoan!
+  borrower: Owner!
+  liquidationId: BigInt!
+  # flags
+  isActive: Boolean!
+  # data
+  liquidationStart: BigInt!
+  liquidationExtension: BigInt
+  currentBid: BigInt!
+  currentBidder: Owner!
+  currentBidPlaced: BigInt!
+  previousBids: [BigInt!]
+  previousBidders: [Owner!]
+  previousBidsPlaced: [BigInt!]
+}
