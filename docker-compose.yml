@@ -17,7 +17,7 @@ services:
       postgres_pass: let-me-in
       postgres_db: graph-node
       ipfs: 'ipfs:5001'
-      ethereum: 'mainnet:https://withered-little-river.discover.quiknode.pro/0ad067bf98284982b77b7532fa9c71237c44f853/'
+      ethereum: 'mainnet:https://eth.llamarpc.com'
       GRAPH_LOG: info
   ipfs:
     image: ipfs/go-ipfs:v0.4.23
