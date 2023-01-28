@@ -1,0 +1,188 @@
+specVersion: 0.0.4
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: HEX
+    network: mainnet
+    source:
+      address: "0x2b591e99afE9f32eAA6214f7B7629768c40Eeb39"
+      abi: HEX
+      startBlock: 16416671
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Owner
+        - HEXStake
+      abis:
+        - name: HEX
+          file: ./abis/HEX.json
+        - name: Gnosis111
+          file: ./abis/Gnosis111.json
+      eventHandlers:
+        - event: StakeStart(uint256,indexed address,indexed uint40)
+          handler: handleStakeStart
+        - event: StakeEnd(uint256,uint256,indexed address,indexed uint40)
+          handler: handleStakeEnd
+        - event: StakeGoodAccounting(uint256,uint256,indexed address,indexed uint40,indexed address)
+          handler: handleStakeGoodAccounting
+      file: ./src/hex.ts
+  - kind: ethereum/contract
+    name: HDRN
+    network: mainnet
+    source:
+      address: "0x3819f64f282bf135d62168C1e513280dAF905e06"
+      abi: HDRN
+      startBlock: 16416671
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Owner
+        - HDRNLoan
+        - HDRNLiquidation
+      abis:
+        - name: HDRN
+          file: ./abis/HDRN.json
+        - name: Gnosis111
+          file: ./abis/Gnosis111.json
+      eventHandlers:
+        - event: Claim(uint256,indexed address,indexed uint40)
+          handler: handleClaim
+        - event: Mint(uint256,indexed address,indexed uint40)
+          handler: handleMint
+        - event: LoanStart(uint256,indexed address,indexed uint40)
+          handler: handleLoanStart
+        - event: LoanPayment(uint256,indexed address,indexed uint40)
+          handler: handleLoanPayment
+        - event: LoanEnd(uint256,indexed address,indexed uint40)
+          handler: handleLoanEnd
+        - event: LoanLiquidateStart(uint256,indexed address,indexed uint40,indexed uint40)
+          handler: handleLoanLiquidateStart
+        - event: LoanLiquidateBid(uint256,indexed address,indexed uint40,indexed uint40)
+          handler: handleLoanLiquidateBid
+        - event: LoanLiquidateExit(uint256,indexed address,indexed uint40,indexed uint40)
+          handler: handleLoanLiquidateExit
+      file: ./src/hdrn.ts
+  - kind: ethereum/contract
+    name: HSIM
+    network: mainnet
+    source:
+      address: "0x8BD3d1472A656e312E94fB1BbdD599B8C51D18e3"
+      abi: HSIM
+      startBlock: 16416671
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Owner
+        - HEXStake
+      abis:
+        - name: HSIM
+          file: ./abis/HSIM.json
+        - name: Gnosis111
+          file: ./abis/Gnosis111.json
+        - name: HSI
+          file: ./abis/HSI.json
+      eventHandlers:
+        - event: HSIStart(uint256,indexed address,indexed address)
+          handler: handleHSIStart
+        - event: HSITransfer(uint256,indexed address,indexed address,indexed address)
+          handler: handleHSITransfer
+        - event: HSITokenize(uint256,indexed uint256,indexed address,indexed address)
+          handler: handleHSITokenize
+        - event: HSIDetokenize(uint256,indexed uint256,indexed address,indexed address)
+          handler: handleHSIDetokenize
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
+      file: ./src/hsim.ts
+  - kind: ethereum/contract
+    name: MAXI
+    network: mainnet
+    source:
+      address: "0x0d86EB9f43C57f6FF3BC9E23D8F9d82503f0e84b"
+      abi: MAXI
+      startBlock: 16416671
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Owner
+      abis:
+        - name: MAXI
+          file: ./abis/MAXI.json
+        - name: Gnosis111
+          file: ./abis/Gnosis111.json
+      callHandlers:
+        - function: pledgeHEX(uint256)
+          handler: handlePledgeHEX
+      file: ./src/maxi.ts
+  - kind: ethereum/contract
+    name: PLSD
+    network: mainnet
+    source:
+      address: "0x34F0915a5f15a66Eba86F6a58bE1A471FB7836A7"
+      abi: PLSD
+      startBlock: 16416671
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Owner
+      abis:
+        - name: PLSD
+          file: ./abis/PLSD.json
+        - name: Gnosis111
+          file: ./abis/Gnosis111.json
+      eventHandlers:
+        - event: Claim(indexed address,uint256)
+          handler: handleClaim
+      file: ./src/plsd.ts
+  # Kinda ugly, just need to define these so we can make contract calls later.
+  # These should never actually trigger, but it's needed for codegen to work.
+  - kind: ethereum/contract
+    name: Gnosis111
+    network: mainnet
+    source:
+      address: "0x34CfAC646f301356fAa8B21e94227e3583Fe3F5F"
+      abi: Gnosis111
+      startBlock: 16416671
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Owner
+      abis:
+        - name: Gnosis111
+          file: ./abis/Gnosis111.json
+      callHandlers:
+        - function: setup(address[],uint256,address,bytes,address,address,uint256,address)
+          handler: handleSetup
+      file: ./src/gnosis111.ts
+  - kind: ethereum/contract
+    name: HSI
+    network: mainnet
+    source:
+      address: "0x64De999CE2FCbCf4f37AB16341de78DDF8722aD2"
+      abi: HSI
+      startBlock: 16416671
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Owner
+      abis:
+        - name: HSI
+          file: ./abis/HSI.json
+      callHandlers:
+        - function: initialize(address)
+          handler: handleInitialize
+      file: ./src/hsi.ts
