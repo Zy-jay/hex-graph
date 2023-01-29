@@ -17,7 +17,7 @@ services:
       postgres_pass: let-me-in
       postgres_db: graph-node
       ipfs: 'ipfs:5001'
-      ethereum: 'mainnet:https://ethw.nownodes.io/be53606c-2643-4759-aed8-8583e79c6365'
+      ethereum: 'mainnet:https://mainnet.ethereumpow.org'
       GRAPH_LOG: info
   ipfs:
     image: ipfs/go-ipfs:v0.4.23
