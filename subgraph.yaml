@@ -8,7 +8,7 @@ dataSources:
     source:
       address: "0x2b591e99afE9f32eAA6214f7B7629768c40Eeb39"
       abi: HEX
-      startBlock: 9041184
+      startBlock: 16431320
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -35,7 +35,7 @@ dataSources:
     source:
       address: "0x3819f64f282bf135d62168C1e513280dAF905e06"
       abi: HDRN
-      startBlock: 14240942
+      startBlock: 16431320
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -73,7 +73,7 @@ dataSources:
     source:
       address: "0x8BD3d1472A656e312E94fB1BbdD599B8C51D18e3"
       abi: HSIM
-      startBlock: 14240942
+      startBlock: 16431320
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -106,7 +106,7 @@ dataSources:
     source:
       address: "0x0d86EB9f43C57f6FF3BC9E23D8F9d82503f0e84b"
       abi: MAXI
-      startBlock: 14593069
+      startBlock: 16431320
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -128,7 +128,7 @@ dataSources:
     source:
       address: "0x34F0915a5f15a66Eba86F6a58bE1A471FB7836A7"
       abi: PLSD
-      startBlock: 14622411
+      startBlock: 16431320
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -153,7 +153,7 @@ dataSources:
     source:
       address: "0x34CfAC646f301356fAa8B21e94227e3583Fe3F5F"
       abi: Gnosis111
-      startBlock: 9084503
+      startBlock: 16431320
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -173,7 +173,7 @@ dataSources:
     source:
       address: "0x64De999CE2FCbCf4f37AB16341de78DDF8722aD2"
       abi: HSI
-      startBlock: 14240942
+      startBlock: 16431320
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
