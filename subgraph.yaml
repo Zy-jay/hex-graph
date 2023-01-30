@@ -11,7 +11,7 @@ dataSources:
       startBlock: 9041184
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.6
+      apiVersion: 0.0.5
       language: wasm/assemblyscript
       entities:
         - Owner
@@ -38,7 +38,7 @@ dataSources:
       startBlock: 14240942
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.6
+      apiVersion: 0.0.5
       language: wasm/assemblyscript
       entities:
         - Owner
@@ -76,7 +76,7 @@ dataSources:
       startBlock: 14240942
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.6
+      apiVersion: 0.0.5
       language: wasm/assemblyscript
       entities:
         - Owner
@@ -109,7 +109,7 @@ dataSources:
       startBlock: 14593069
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.6
+      apiVersion: 0.0.5
       language: wasm/assemblyscript
       entities:
         - Owner
@@ -131,7 +131,7 @@ dataSources:
       startBlock: 14622411
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.6
+      apiVersion: 0.0.5
       language: wasm/assemblyscript
       entities:
         - Owner
@@ -146,6 +146,7 @@ dataSources:
       file: ./src/plsd.ts
   # Kinda ugly, just need to define these so we can make contract calls later.
   # These should never actually trigger, but it's needed for codegen to work.
+  # If there is a better way to do this, I'm all ears...
   - kind: ethereum/contract
     name: Gnosis111
     network: mainnet
@@ -155,7 +156,7 @@ dataSources:
       startBlock: 9084503
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.6
+      apiVersion: 0.0.5
       language: wasm/assemblyscript
       entities:
         - Owner
@@ -175,7 +176,7 @@ dataSources:
       startBlock: 14240942
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.6
+      apiVersion: 0.0.5
       language: wasm/assemblyscript
       entities:
         - Owner
