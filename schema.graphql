@@ -18,7 +18,6 @@ type Owner @entity {
   # id
   id: ID!
   # flags
-  isGnosisSafe:  Boolean! # Staker.app
   hasMintedHdrn: Boolean! # Hedron        -> 0x3819f64f282bf135d62168C1e513280dAF905e06
   hasMintedMaxi: Boolean! # Maximus DAO   -> 0x0d86eb9f43c57f6ff3bc9e23d8f9d82503f0e84b
   hasMintedPlsd: Boolean! # Pulsedogecoin -> 0x34f0915a5f15a66eba86f6a58be1a471fb7836a7

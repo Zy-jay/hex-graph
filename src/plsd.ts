@@ -6,9 +6,6 @@ import {
   Owner
 } from "../generated/schema"
 
-import {
-  isGnosisSafe
-} from "../src/utils"
 
 export function handleInitialize(event: Claim): void {
   let ownerId = event.params.to.toHexString()
@@ -16,7 +13,6 @@ export function handleInitialize(event: Claim): void {
 
   if (!owner) {
     owner = new Owner(ownerId);
-    owner.isGnosisSafe = isGnosisSafe(event.params.to);
     owner.hasMintedHdrn = false;
     owner.hasMintedMaxi = false;
     owner.hasMintedPlsd = false;

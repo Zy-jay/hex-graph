@@ -6,9 +6,6 @@ import {
   Owner
 } from "../generated/schema"
 
-import {
-  isGnosisSafe
-} from "../src/utils"
 
 export function handleInitialize(call: PledgeHEXCall): void {
   let ownerId = call.from.toHexString();
@@ -16,7 +13,6 @@ export function handleInitialize(call: PledgeHEXCall): void {
 
   if (!owner) {
     owner = new Owner(ownerId);
-    owner.isGnosisSafe = isGnosisSafe(call.from);
     owner.hasMintedHdrn = false;
     owner.hasMintedMaxi = false;
     owner.hasMintedPlsd = false;

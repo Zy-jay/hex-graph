@@ -21,9 +21,6 @@ import {
   HEXStake
 } from "../generated/schema"
 
-import {
-  isGnosisSafe
-} from "../src/utils"
 
 export function handleHSIStart(event: HSIStart): void {
   let ownerId = event.params.staker.toHexString();
@@ -32,7 +29,6 @@ export function handleHSIStart(event: HSIStart): void {
 
   if (!owner) {
     owner = new Owner(ownerId);
-    owner.isGnosisSafe = isGnosisSafe(event.params.staker);
     owner.hasMintedHdrn = false;
     owner.hasMintedMaxi = false;
     owner.hasMintedPlsd = false;
@@ -74,7 +70,6 @@ export function handleHSITransfer(event: HSITransfer): void {
 
   if (!owner) {
     owner = new Owner(ownerId);
-    owner.isGnosisSafe = isGnosisSafe(event.params.newStaker);
     owner.hasMintedHdrn = false;
     owner.hasMintedMaxi = false;
     owner.hasMintedPlsd = false;
@@ -155,7 +150,6 @@ export function handleTransfer(event: Transfer): void {
 
   if (!owner) {
     owner = new Owner(ownerId);
-    owner.isGnosisSafe = isGnosisSafe(event.params.to);
     owner.hasMintedHdrn = false;
     owner.hasMintedMaxi = false;
     owner.hasMintedPlsd = false;

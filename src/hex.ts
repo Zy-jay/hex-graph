@@ -22,7 +22,6 @@ import {
 import {
   bigIntToBinaryStr,
   hexDayFromTimestamp,
-  isGnosisSafe
 } from "../src/utils"
 
 export function handleStakeStart(event: StakeStart): void {
@@ -31,7 +30,6 @@ export function handleStakeStart(event: StakeStart): void {
 
   if (!owner) {
     owner = new Owner(ownerId);
-    owner.isGnosisSafe = isGnosisSafe(event.params.stakerAddr);
     owner.hasMintedHdrn = false;
     owner.hasMintedMaxi = false;
     owner.hasMintedPlsd = false;

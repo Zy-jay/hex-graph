@@ -35,7 +35,6 @@ import {
 import {
   bigIntToBinaryStr,
   hedronDayFromTimestamp,
-  isGnosisSafe
 } from "../src/utils"
 
 export function handleClaim(event: Claim): void {
@@ -217,7 +216,6 @@ export function handleLoanLiquidateStart(event: LoanLiquidateStart): void {
 
     if (!owner) {
       owner = new Owner(ownerId);
-      owner.isGnosisSafe = isGnosisSafe(event.transaction.from);
       owner.hasMintedHdrn = false;
       owner.hasMintedMaxi = false;
       owner.hasMintedPlsd = false;
@@ -293,7 +291,6 @@ export function handleLoanLiquidateBid(event: LoanLiquidateBid): void {
 
     if (!owner) {
       owner = new Owner(ownerId);
-      owner.isGnosisSafe = isGnosisSafe(event.params.bidder);
       owner.hasMintedHdrn = false;
       owner.hasMintedMaxi = false;
       owner.hasMintedPlsd = false;

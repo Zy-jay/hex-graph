@@ -1,11 +1,7 @@
 import {
-  Address,
   BigInt
 } from "@graphprotocol/graph-ts"
 
-import {
-  Gnosis111
-} from "../generated/Gnosis111/Gnosis111"
 
 export function bigIntToBinaryStr(input: BigInt): string {
   const zero = BigInt.fromI32(0);
@@ -70,18 +66,3 @@ export function hedronDayFromTimestamp(number: BigInt): BigInt {
 
 // only checking for Gnosis Safe 1.1.1, as this is what Staker.app uses.
 // If that ever changes, this will have to be revisited.
-export function isGnosisSafe(address: Address): boolean {
-  let contract = Gnosis111.bind(address);
-  let tryName  = contract.try_NAME();
-  let tryVersion = contract.try_VERSION();
-
-  if (tryName.reverted || tryVersion.reverted) {
-    return false;
-  }
-
-  else if (tryName.value === "Gnosis Safe" && tryVersion.value === "1.1.1") {
-    return true;
-  }
-
-  return false;
-}
